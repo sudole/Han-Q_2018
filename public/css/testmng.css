@@ -1,0 +1,7 @@
+#btnplus.ui-button {border-radius:2em;border-style:ridge;padding:0.3em 0.6em;left: 0.5em;}
+
+#timeSel-button, #timeSel2-button, #timeSel3-button, #timeSel4-button {vertical-align: baseline;width: 2.4em;height:22px;}
+
+span.ui-checkboxradio-icon.ui-corner-all.ui-icon.ui-icon-background {display: none;}
+div#ui-datepicker-div {width:auto;}
+table#examArea {width: 100%;border-spacing:0px;}

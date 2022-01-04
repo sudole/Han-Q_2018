@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>On Quiz Program</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<script src="plugins/jquery/jquery-1.11.1.min.js"></script>
+	<script src="plugins/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="plugins/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<script src="js/jq_centerstudent.js"></script>
+	<link rel="stylesheet" href="plugins/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" type="text/css" href="plugins/jquery.mobile-custom/green-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="plugins/jquery.mobile-custom/jquery.mobile.icons.min.css">
+	<link rel="stylesheet" href="plugins/jquery-ui-1.12.1/jquery-ui.min.css">
+	<link rel="stylesheet" href="css/center.css">
+</head>
+<body>
+	<div data-role="page" id="lecsArea" data-theme="a">
+		<header data-role="header">
+			<h1>On Quiz Program</h1>
+		</header>
+		<div data-role="main">
+			<hr>
+			<ul data-role="listview" id="leclist">
+				<li data-role="list-divider">수강중인 강좌</li>
+			</ul>
+			<input type="hidden" name="lectures" value="<%= JSON.stringify(stdLecs) %>">
+			<input type="hidden" name="student" value="<%= JSON.stringify(student) %>">
+		</div>
+		<!-- <center><footer id="pFoot" data-role="footer"></footer></center> -->
+	</div>
+</body>
+</html>

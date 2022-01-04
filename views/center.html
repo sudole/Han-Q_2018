@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<script src="plugins/jquery/jquery-1.11.1.min.js"></script>
+	<script src="plugins/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="plugins/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<script src="js/jq_center.js"></script>
+	<link rel="stylesheet" href="plugins/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="plugins/jquery-ui-1.12.1/jquery-ui.min.css">
+	<link rel="stylesheet" href="css/center.css">
+</head>
+<body>
+	<div data-role="page" id="mainPage">
+		<header data-role="header">
+			<h1>On Quiz Program</h1>
+		</header>
+		<div data-role="main" class="ui-content">
+			<a href="#regSubject"><button>과목 등록</button></a>
+			<a href="#regLecture"><button>강좌 등록</button></a>
+			<a href="#selectSuj"><button>문제 등록</button></a>
+			<a href="#selectSL"><button>시험 출제</button></a>
+			<a href="#regStudent"><button>학생 등록</button></a>
+			<a href="#viewSujlist"><button>등록된 과목 보기</button></a>
+			<a href=""><button>등록된 강좌 보기</button></a>
+		</div>
+	</div>
+	<div data-role="page" id="regSubject">
+		<header data-role="header">
+			<h1>On Quiz Program
+				<a href="#mainPage" data-icon="home" data-iconpos="notext" class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-home">home</a>
+			</h1>
+		</header> 
+		<div data-role="main" class="ui-content">
+			<label for="searchSuj">과목명</label>
+			<input type="search" name="searchSuj" id="searchSuj" value="" onkeydown="onKeydownSearchSuj(event, this.value);" />
+			<button id="btnSuj" disabled>등록</button>
+			<hr>
+			<br>
+			<ul data-role="listview" id="sujlist" data-theme="a" data-divider-theme="b">
+				<li data-role="list-divider">검색 결과</li>
+			</ul>
+		</div>
+	</div>
+	<div data-role="page" id="regLecture">
+		<header data-role="header">
+			<h1>On Quiz Program
+				<a href="#mainPage" data-icon="home" data-iconpos="notext" class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-home">home</a>
+			</h1>
+		</header>
+		<div data-role="main" class="ui-content">
+			<input type="text" name="lecture" placeholder="강좌명">
+			<label for="lSubject">과목명</label>
+			<select id="lSubject">
+				<option>선택안함</option>
+				<option>데이터베이스</option>
+				<option>빅 데이터</option>
+			</select>
+			<input type="text" name="professor" placeholder="교수명">
+			<label for="semester">학기</label>
+			<div id="semester">
+				<select id="semester1">
+					<option>학년</option>
+					<option>2018</option>
+					<option>2017</option>
+				</select>
+				<select id="semester2">
+					<option>학기</option>
+					<option>1</option>
+					<option>2</option>
+					<option>계절학기</option>
+				</select>
+			</div>
+			<button>등록</button>
+		</div>
+	</div>
+	<div data-role="page" id="selectSuj">
+		<header data-role="header">
+			<h1>On Quiz Program</h1>
+		</header>
+		<div data-role="content">
+			<form action="regExam.html" method="POST" data-ajax="false">
+				<label for="selSuj">과목명</label>
+				<input type="button" id="btnSearch" value="조회">
+				<select id="selSuj" class="disCss" disabled>
+					<option>선택안함</option>
+				</select>
+				<input type="hidden" name="subject">
+				<input type="hidden" name="sbid">
+				<hr id="selHr">
+				<input type="submit" id="btnSel" class="disCss" value="선택" disabled>		
+			</form>
+		</div>
+	</div>
+	<div data-role="page" id="selectSL">
+		<header data-role="header">
+			<h1>On Quiz Program</h1>
+		</header>
+		<div data-role="content">
+			<form action="makeTest.html" method="POST" data-ajax="false">
+				<label for="sel2Suj">과목명</label>
+				<input type="button" id="btnSujSearch" value="조회">
+				<select id="sel2Suj" class="disCss2" disabled>
+					<option>선택안함</option>
+				</select>
+				<label for="selLec">강좌명</label>
+				<input type="button" id="btnLecSearch" value="조회">
+				<select id="selLec" class="disCss3" disabled>
+					<option>선택안함</option>
+				</select>
+				<input type="hidden" name="subject2" value="">
+				<input type="hidden" name="sbid2" value="0">
+				<input type="hidden" name="lecture" value="">
+				<input type="hidden" name="lid" value="0">
+				<hr id="selHr">
+				<input type="submit" id="btnSel2" class="disCss2" value="선택" disabled>
+			</form>
+		</div>
+	</div>
+	<div data-role="page" id="selectType">
+		<div data-role="content">
+			<a href="#brExOX"><button>OX 유형</button></a>
+			<a href="#brExBracket"><button>괄호 유형</button></a>
+			<!-- <a href=""><button></button></a> -->
+		</div>
+	</div>
+	<div data-role="page" id="brExOX">
+		<header data-role="header">
+			<h1>On Quiz Program</h1>
+		</header>
+		<div data-role="main">
+			<p>유형: OX </p>
+			<p>문제: <span></span></p>
+			<p>답: <span></span></p>
+			<label for="">배점</label>
+			<input type="text" name="">점
+			<label>순서</label>
+			<select>
+				<option>1번째</option>
+			</select>
+			<button>수정</button>
+			<button>추가</button>
+		</div>
+	</div>
+	<div data-role="page" id="brExBracket">
+		<header data-role="header">
+			<h1>On Quiz Program</h1>
+		</header>
+		<div data-role="main">
+			<p>유형: 괄호 </p>
+			<p>문제: <span></span></p>
+			<p>답: <span></span></p>
+			<label for="">배점</label>
+			<input type="text" name="">점
+			<label>순서</label>
+			<select>
+				<option>1번째</option>
+			</select>
+			<button>수정</button>
+			<button>추가</button>
+		</div>
+	</div>
+	<div data-role="page" id="viewExams">
+		<header data-role="header">
+			<h1>On Quiz Program</h1>
+		</header>
+		<div data-role="main">
+			<p>시험지명: <span id="textNm"></span></p>
+			<p><span id="num"></span>.</p>
+			<p><span id="question"></span><span id="comment"></span></p>
+			<p id="answer"></p>
+			<p id="point"></p>
+		</div>
+	</div>
+	<div data-role="page" id="regStudent">
+		<header data-role="header">
+			<h1>On Quiz Program</h1>>
+		</header>
+		<div data-role="main">
+			<label for="lecture">강좌명</label>
+			<select id="lecture">
+				<option></option>
+			</select>
+			<hr>
+			<br>
+			<label for="stlist">학생리스트</label>
+			<table data-role="table" id="stlist">
+				<thead>
+					<th>No</th>
+					<th>이름</th>
+					<th>학번</th>
+				</thead>
+				<tbody>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tbody>
+			</table>
+			<a href="#addStd"><button>추가</button></a>
+		</div>
+	</div>
+	<div data-role="page" id="addStd">
+		<p>강좌명: <span></span></p>
+		<label for="name">이름</label>
+		<input type="text" name="name" id="name">
+		<label for="code">학번</label>
+		<input type="text" name="code" id="code">
+		<button>등록</button>
+	</div>
+	<div data-role="page" id="viewSujlist">
+		<header data-role="header">
+			<h1>On Quiz Program</h1>
+		</header>
+		<div data-role="main">
+			<table data-role="table">
+				<thead>
+					<th>No</th>
+					<th>과목</th>
+				</thead>
+				<tbody>
+					<td></td>
+					<td></td>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	<div data-role="page" id="viewLeclist">
+		<header data-role="header">
+			<h1>On Quiz Program</h1>
+		</header>
+		<div data-role="main">
+			<table data-role="table">
+				<thead>
+					<th>No</th>
+					<th>과목</th>
+					<th>강좌</th>
+				</thead>
+				<tbody>
+					<td></td>
+					<td></td>
+					<td></td>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+</script>
+</html>

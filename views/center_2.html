@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<script src="plugins/jquery/jquery-1.11.1.min.js"></script>
+	<script src="plugins/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<script src="plugins/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="plugins/jquery.mobile-datepicker/jquery.mobile.datepicker.js"></script>
+	<script src="plugins/jquery.tmpl/jquery.tmpl.min.js"></script>
+	<script src="js/jq_center.js"></script>
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+	<link rel="stylesheet" href="plugins/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" type="text/css" href="plugins/jquery.mobile-custom/green-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="plugins/jquery.mobile-custom/jquery.mobile.icons.min.css">
+	<link rel="stylesheet" href="plugins/jquery.mobile-datepicker/jquery.mobile.datepicker.css">
+	<link rel="stylesheet" href="plugins/jquery.mobile-datepicker/jquery.mobile.datepicker.theme.css">
+	<style type="text/css">
+	/*.ui-listview>.ui-li-static {padding: 0;}*/
+	@-webkit-keyframes fadein { /* Safari and Chrome */
+		from {
+			opacity:0;
+		}
+		to {
+			opacity:1;
+		}
+	}
+	.fadein {
+		-webkit-animation: fadein 2s;
+	}
+	.ui-panel-inner { padding: 0;}
+	h1.ui-title {width: 100%;}
+	.ui-header .ui-title, .ui-footer .ui-title {margin:0;}
+	.ui-navbar {margin-top: 1em;}
+
+	#clkLn {background-color: #397E40; color: white;}
+
+	#ttab1 #quest {overflow-y:scroll;}
+
+	#ttab4CMT {color:red;}
+
+	#stab4 input {text-align:center;}
+	ul#sujlist4 li.resli {background-color: #cdcdcd;}
+</style>
+<script id="testUnit2" type='text/x-jquery-tmpl'>
+	<label for="testName">시험지명</label>
+	<div class='ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset'><input type="text" name="testName" id="testName" value="${TESTNAME}"></div>
+	<label for="tSubject">과목명</label>
+	<div class='ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset'><input type="text" name="tSubject" id="tSubject" value="${SBNAME}" readonly></div>
+	<label for="tLecture">강좌명</label>
+	<div class='ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset'><input type="text" name="tLecture" id="tLecture" value="${LNAME}" readonly></div>
+	<hr>
+	{{each exams}}
+	<div class="exms" eid="${eid}" etype="${type}">
+		<label for="question">문제</label>
+		<textarea name="question" class='ui-input-text ui-shadow-inset ui-body-inherit ui-corner-all ui-textinput-autogrow' readonly>${question}</textarea>
+		<div class='ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset'><input name="comment" value="( ${comment} )" readonly></div>
+		<label for="answer" readonly>답</label>
+		<div class='ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset'><input name="answer" value="${answer.replace(/\/\/\/\/|\/\/\/|\/\//gi,"")}"></div>
+		<label for="point">배점</label>
+		<div class='ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset'><input name="point" value="${point}"></div>
+		<label for="sn">순서</label> 
+		<div class='ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset'><input name="sn" value="${sn}"></div>
+	</div>
+	{{/each}}
+	<hr>
+	<label for="tDate">응시날짜</label>
+	<div class='ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset'><input type="text" id="tDate2" name="tDate2" data-role="date" value="${TESTDATE.substr(0,4)}-${TESTDATE.substr(4,2)}-${TESTDATE.substr(6,2)}"></div>
+	<fieldset data-role="controlgroup" data-type="horizontal" class="ui-controlgroup ui-controlgroup-horizontal ui-corner-all">
+		<div role="heading" class="ui-controlgroup-label">
+			<legend>시작시간</legend>
+		</div>
+		<div class="ui-controlgroup-controls">
+			<select id="stTime1">
+				<option {{if STTIME.substr(0,2) == '09'}}selected{{/if}}>09</option>
+				<option {{if STTIME.substr(0,2) == '10'}}selected{{/if}}>10</option>
+				<option {{if STTIME.substr(0,2) == '11'}}selected{{/if}}>11</option>
+				<option {{if STTIME.substr(0,2) == '12'}}selected{{/if}}>12</option>
+				<option {{if STTIME.substr(0,2) == '13'}}selected{{/if}}>13</option>
+				<option {{if STTIME.substr(0,2) == '14'}}selected{{/if}}>14</option>
+				<option {{if STTIME.substr(0,2) == '15'}}selected{{/if}}>15</option>
+				<option {{if STTIME.substr(0,2) == '16'}}selected{{/if}}>16</option>
+				<option {{if STTIME.substr(0,2) == '17'}}selected{{/if}}>17</option>
+				<option {{if STTIME.substr(0,2) == '18'}}selected{{/if}}>18</option>
+				<option {{if STTIME.substr(0,2) == '19'}}selected{{/if}}>19</option>
+			</select>
+			<select id="stTime2">
+				<option {{if STTIME.substr(2,2) == '00'}}selected{{/if}}>00</option>
+				<option {{if STTIME.substr(2,2) == '15'}}selected{{/if}}>15</option>
+				<option {{if STTIME.substr(2,2) == '30'}}selected{{/if}}>30</option>
+				<option {{if STTIME.substr(2,2) == '45'}}selected{{/if}}>45</option>
+			</select>
+		</div>
+	</fieldset>
+	<br />
+	<fieldset data-role="controlgroup" data-type="horizontal" class="ui-controlgroup ui-controlgroup-horizontal ui-corner-all">
+		<div role="heading" class="ui-controlgroup-label">
+			<legend>종료시간</legend>
+		</div>
+		<div class="ui-controlgroup-controls">
+			<select id="endTime1">
+				<option {{if ENDTIME.substr(0,2) == '09'}}selected{{/if}}>09</option>
+				<option {{if ENDTIME.substr(0,2) == '10'}}selected{{/if}}>10</option>
+				<option {{if ENDTIME.substr(0,2) == '11'}}selected{{/if}}>11</option>
+				<option {{if ENDTIME.substr(0,2) == '12'}}selected{{/if}}>12</option>
+				<option {{if ENDTIME.substr(0,2) == '13'}}selected{{/if}}>13</option>
+				<option {{if ENDTIME.substr(0,2) == '14'}}selected{{/if}}>14</option>
+				<option {{if ENDTIME.substr(0,2) == '15'}}selected{{/if}}>15</option>
+				<option {{if ENDTIME.substr(0,2) == '16'}}selected{{/if}}>16</option>
+				<option {{if ENDTIME.substr(0,2) == '17'}}selected{{/if}}>17</option>
+				<option {{if ENDTIME.substr(0,2) == '18'}}selected{{/if}}>18</option>
+				<option {{if ENDTIME.substr(0,2) == '19'}}selected{{/if}}>19</option>
+			</select>
+			<select id="endTime2">
+				<option {{if ENDTIME.substr(2,2) == '00'}}selected{{/if}}>00</option>
+				<option {{if ENDTIME.substr(2,2) == '15'}}selected{{/if}}>15</option>
+				<option {{if ENDTIME.substr(2,2) == '30'}}selected{{/if}}>30</option>
+				<option {{if ENDTIME.substr(2,2) == '45'}}selected{{/if}}>45</option>
+			</select>
+		</div>
+	</fieldset>
+	<br />
+	<div class="ui-btn ui-input-btn ui-corner-all ui-shadow">
+		수정하기
+		<input type="button" onclick="updateTestBtnClick(${MKTID})" mktid="" value="수정하기">
+	</div>
+</script>
+<script id="lecUnit2" type='text/x-jquery-tmpl'>
+	<li class='resli2 ui-li-static ui-body-inherit ui-first-child ui-last-child'>
+		<label for='sbname'>과목명</label>
+		<div class='ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset'>
+			<input type='text' name='sbname' value='${sbname}' readonly></div>
+			<label for='lname'>강좌명</label>
+			<div class='ui-input-text ui-body-inherit ui-corner-all ui-shadow-inset'>
+				<input type='text' name='lname' value='${lname}'></div>
+				<fieldset data-role="controlgroup" data-type="horizontal" class="ui-controlgroup ui-controlgroup-horizontal ui-corner-all">
+					<div role="heading" class="ui-controlgroup-label">
+						<legend>학기정보</legend>
+					</div>
+					<div class="ui-controlgroup-controls">
+						<select id="year">
+							<option {{if semester.substr(0,4) == '2017'}}selected{{/if}}>2017</option>
+							<option {{if semester.substr(0,4) == '2018'}}selected{{/if}}>2018</option>
+							<option {{if semester.substr(0,4) == '2019'}}selected{{/if}}>2019</option>
+						</select>
+						<select id="semester">
+							<option {{if semester.substr(4,1) == '1'}}selected{{/if}}>1</option>
+							<option {{if semester.substr(4,1) == '2'}}selected{{/if}}>2</option>
+							<option {{if semester.substr(4,4) == '계절학기'}}selected{{/if}}>계절학기</option>
+						</select>
+					</div>
+				</fieldset>
+				<div class='ui-btn ui-input-btn ui-corner-all ui-shadow'>
+					수정하기<input type='button' value='수정하기' onclick='onclickUpdateLec(this)' lid="${lid}"></div>
+				</li>
+			</script>
+		</head>
+		<body>
+			<div data-role="page" id="mainPage" data-theme="a">
+				<header data-role="header">
+					<h1>On Quiz Program</h1>
+					<a href="#left-panel" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Menu</a>
+				</header>
+				<div data-role="main" class="ui-content">
+					<center>
+						<div  class="fadein"><h3> <%= name %> 님 안녕하세요.</h3></div>
+					</center>
+				</div>
+				<div data-role="panel" id="left-panel">
+					<div data-role="content" data-theme="a">
+						<ul data-role="listview" data-inset="true">
+							<li><a href="#spage">과목관리</a></li>
+							<li><a href="#lpage" class="clkLec">강좌관리</a></li>
+							<li><a href="#epage" idx="1" class="clkExm">문제관리</a></li>
+							<li><a href="#tpage" class="clkTst">시험관리</a></li>
+							<li><a href="#stpage" class="clkStd">학생관리</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- 과목 관리 -->
+			<div data-role="page" id="spage">
+				<header data-role="header">
+					<h1>과목 관리
+						<a href="#mainPage" data-icon="home" data-iconpos="notext" class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-home">home</a>
+					</h1>
+				</header> 
+				<div data-role="content">
+					<div data-role="tabs">
+						<div data-role="navbar">
+							<ul>
+								<li><a href="#stab1">등록</a></li>
+								<li><a href="#stab2">조회</a></li>
+								<!-- <li><a href="#stab3">수정</a></li> -->
+								<li><a href="#stab4">삭제</a></li>
+							</ul>
+						</div>
+						<div id="stab1" class="ui-content">
+							<label for="searchSuj">과목명</label>
+							<input type="search" name="searchSuj" id="searchSuj" value="" onkeydown="onKeydownRegSearchSuj(event, this.value);" />
+							<button id="btnSuj" disabled>등록</button>
+						</div>
+						<div id="stab2" class="ui-content">
+							<label for="searchSuj">과목명</label>
+							<input type="search" name="searchSuj" id="searchSuj" value="" onkeydown="onKeydownSearchSuj(event, this.value);" />
+							<hr>
+							<br>
+							<ul data-role="listview" id="sujlist2" data-theme="a">
+								<li data-role="list-divider">검색 결과</li>
+							</ul>
+						</div>
+				<!-- <div id="stab3" class="ui-content">
+					<label for="searchSuj">과목명</label>
+					<input type="search" name="searchSuj" id="searchSuj" value="" onkeydown="onKeydownSearchSuj2(event, this.value);" />
+					<hr>
+					<br>
+					<ul data-role="listview" id="sujlist3" data-theme="a">
+						<li data-role="list-divider">검색 결과</li>
+					</ul>
+				</div> -->
+				<div id="stab4" class="ui-content">
+					<label for="searchSuj">과목명</label>
+					<input type="search" name="searchSuj" id="searchSuj" value="" onkeydown="onKeydownSearchSuj3(event, this.value);" />
+					<hr>
+					<br>
+					<ul data-role="listview" id="sujlist4" data-theme="a">
+						<li data-role="list-divider">검색 결과</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- -- -- -- -->
+	<!-- 강좌 관리 -->
+	<div data-role="page" id="lpage">
+		<header data-role="header">
+			<h1>강좌 관리
+				<a href="#mainPage" data-icon="home" data-iconpos="notext" class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-home">home</a>
+			</h1>
+		</header> 
+		<div data-role="content">
+			<div data-role="tabs">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#ltab1" class="clkLec">등록</a></li>
+						<li><a href="#ltab2" class="clkLec2">조회</a></li>
+						<!-- <li><a href="#ltab3">수정</a></li> -->
+						<li><a href="#ltab4" class="clkLec3">삭제</a></li>
+					</ul>
+				</div>
+				<div id="ltab1" class="ui-content">
+					<input type="text" name="lecture" placeholder="강좌명">
+					<label for="lSubject">과목명</label>
+					<select name="lSubject" id="lSubject">
+						<option value="0">선택안함</option>
+					</select>
+					<!-- <input type="text" name="professor" placeholder="교수명"> -->
+					<label for="semester">학기</label>
+					<div id="semester">
+						<select id="semester1">
+							<option value="0" selected>학년</option>
+							<option>2019</option>
+							<option>2018</option>
+							<option>2017</option>
+						</select>
+						<select id="semester2">
+							<option selected>학기</option>
+							<option>1</option>
+							<option>2</option>
+							<option>계절학기</option>
+						</select>
+					</div>
+					<button id="btnRegLec">등록</button>
+				</div>
+				<div id="ltab2" class="ui-content">
+					<label for="searchSuj">강좌명</label>
+					<input type="search" name="searchLec" id="searchLec" value="" onkeydown="onKeydownSearchLec(event, this.value);" />
+					<hr>
+					<br>
+					<ul data-role="listview" id="leclist" data-theme="a">
+						<li data-role="list-divider">검색 결과</li>
+					</ul>
+				</div>
+				<!-- <div id="ltab3" class="ui-content">
+					<label for="searchSuj">강좌명</label>
+					<input type="search" name="searchLec" id="searchLec" value="" onkeydown="onKeydownUpdSearchLec(event, this.value);" />
+					<hr>
+					<br>
+					<ul data-role="listview" id="leclist2" data-theme="a">
+						<li data-role="list-divider">검색 결과</li>
+					</ul>
+				</div> -->
+				<div id="ltab4" class="ui-content">
+					<label for="searchSuj">강좌명</label>
+					<input type="search" name="searchLec" id="searchLec2" value="" onkeydown="onKeydownDelSearchLec(event, this.value);" />
+					<hr>
+					<br>
+					<ul data-role="listview" id="leclist2" data-theme="a">
+						<li data-role="list-divider">검색 결과</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- -- -- -- -->
+	<!-- 문제 관리 -->
+	<div data-role="page" id="epage">
+		<header data-role="header">
+			<h1>문제 관리
+				<a href="#mainPage" data-icon="home" data-iconpos="notext" class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-home">home</a>
+			</h1>
+		</header> 
+		<div data-role="content">
+			<div data-role="tabs">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#etab1" class="clkExm">등록</a></li>
+						<li><a href="#etab2" class="clkExm2">조회</a></li>
+						<!-- <li><a href="#etab3">수정</a></li> -->
+						<li><a href="#etab4" class="clkExm3">삭제</a></li>
+					</ul>
+				</div>
+				<div id="etab1" class="ui-content">
+					<label for="eSubject">과목명</label>
+					<select id="eSubject">
+						<option value="0">선택안함</option>
+					</select>
+					<label for="eLecture">강좌명</label>
+					<select id="eLecture">
+						<option value="0">선택안함</option>
+					</select>
+					<fieldset data-role="controlgroup" data-type="horizontal">
+						<legend>유형</legend>
+						<input type="radio" name="examType" id="type1" value="0" checked>
+						<label for="type1">OX형</label>
+						<input type="radio" name="examType" id="type2" value="1">
+						<label for="type2">괄호형</label>
+					</fieldset>
+					<label for="question">문제</label>
+					<textarea id="question"></textarea>
+					<label for="comment">안내문구</label>
+					<input type="text" id="comment">
+					<label for="answer">답<input type="button" id="btnplus" value="+"></label>
+					<input type="text" id="answer1" class="ansGrp">
+					<button id="btnRegEx">등록</button>
+				</div>
+				<div id="etab2" class="ui-content">
+					<label for="eSubject2">과목명</label>
+					<select id="eSubject2">
+						<option value="0">선택안함</option>
+					</select>
+					<label for="eLecture2">강좌명</label>
+					<select id="eLecture2">
+						<option value="0">선택안함</option>
+					</select>
+					<button id="btnSearch">조회</button>
+					<br>
+					<hr>
+					<ul data-role="listview" id="examlist" data-theme="a">
+						<li data-role="list-divider">검색 결과</li>
+					</ul>
+				</div>
+				<!-- <div id="etab3" class="ui-content">
+				</div> -->
+				<div id="etab4" class="ui-content">
+					<label for="eSubject3">과목명</label>
+					<select id="eSubject3">
+						<option value="0">선택안함</option>
+					</select>
+					<label for="eLecture3">강좌명</label>
+					<select id="eLecture3">
+						<option value="0">선택안함</option>
+					</select>
+					<button id="btnSearch2">조회</button>
+					<br>
+					<hr>
+					<ul data-role="listview" id="examlist2" data-theme="a">
+						<li data-role="list-divider">검색 결과</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- -- -- -- -->
+	<!-- 시험 관리 -->
+	<div data-role="page" id="tpage">
+		<header data-role="header">
+			<h1>시험 관리
+				<a href="#mainPage" data-icon="home" data-iconpos="notext" class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-home">home</a>
+			</h1>
+		</header> 
+		<div data-role="content">
+			<div data-role="tabs">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#ttab1" class="clkTst">등록</a></li>
+						<li><a href="#ttab2">조회</a></li>
+						<!-- <li><a href="#ttab3" class="lkupdate">수정</a></li> -->
+						<li><a href="#ttab4">삭제</a></li>
+					</ul>
+				</div>
+				<div id="ttab1" class="ui-content">
+					<label for="testName">시험지명</label>
+					<input type="text" name="testName" id="testName">
+					<label for="tSubject">과목명</label>
+					<select id="tSubject">
+						<option value="0">선택안함</option>
+					</select>
+					<label for="tLecture">강좌명</label>
+					<select id="tLecture">
+						<option value="0">선택안함</option>
+					</select>
+					<hr>
+					<input type="button" id="btnBrExam" value="문제 가져오기">
+					<br>
+					<hr>
+					<ul data-role="listview" id="ExamArea">
+						<li data-role="list-divider">검색 결과</li>
+					</ul>
+					<hr>
+					<label for="tDate">응시날짜</label>
+					<input type="text" id="tDate" data-role="date">
+					<fieldset data-role="controlgroup" data-type="horizontal">
+						<legend>시작시간</legend>
+						<select id="stTime1">
+							<option>09</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+							<option>13</option>
+							<option>14</option>
+							<option>15</option>
+							<option>16</option>
+							<option>17</option>
+							<option>18</option>
+							<option>19</option>
+						</select>
+						<select id="stTime2">
+							<option>00</option>
+							<option>15</option>
+							<option>30</option>
+							<option>45</option>
+						</select>
+					</fieldset>
+					<br />
+					<fieldset data-role="controlgroup" data-type="horizontal">
+						<legend>종료시간</legend>
+						<select id="endTime1">
+							<option>09</option>
+							<option>10</option>
+							<option>11</option>
+							<option>12</option>
+							<option>13</option>
+							<option>14</option>
+							<option>15</option>
+							<option>16</option>
+							<option>17</option>
+							<option>18</option>
+							<option>19</option>
+						</select>
+						<select id="endTime2">
+							<option>00</option>
+							<option>15</option>
+							<option>30</option>
+							<option>45</option>
+						</select>
+					</fieldset>
+					<br />
+					<button id="btnSave">저장</button>
+				</div>
+				<div id="ttab2"  class="ui-content">
+					<input type="button" class="tt2btn" name="btnShowSub" value="과목별 보기">
+					<br>
+					<ul data-role="listview" id="testlist" data-theme="a">
+						<!-- <li data-role="list-divider">검색 결과</li> -->
+					</ul>
+				</div>
+				<!-- <div id="ttab3"  class="ui-content">
+				</div> -->
+				<div id="ttab4"  class="ui-content">
+					<input type="button" class="tt2btn2" name="btnShowSub2" value="과목별 보기">
+					<p id="ttab4CMT"> * 시험 삭제는 출제 전 항목만 가능합니다. </p>
+					<br>
+					<ul data-role="listview" id="testlist2" data-theme="a">
+						<!-- <li data-role="list-divider">검색 결과</li> -->
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- -- -- -- -->
+	<!-- 학생 관리 -->
+	<div data-role="page" id="stpage">
+		<header data-role="header">
+			<h1>학생 관리
+				<a href="#mainPage" data-icon="home" data-iconpos="notext" class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-home">home</a>
+			</h1>
+		</header> 
+		<div data-role="content">
+			<div data-role="tabs">
+				<div data-role="navbar">
+					<ul>
+						<li><a href="#sttab1" class="clkStd">등록</a></li>
+						<li><a href="#sttab2" class="clkStd2">조회</a></li>
+						<!-- <li><a href="#sttab3">수정</a></li> -->
+						<li><a href="#sttab4" class="clkStd3">삭제</a></li>
+					</ul>
+				</div>
+				<div id="sttab1" class="ui-content">
+					<label for="stSubject">과목명</label>
+					<select id="stSubject">
+						<option value="0">선택안함</option>
+					</select>
+					<label for="stLecture">강좌명</label>
+					<select id="stLecture">
+						<option value="0">선택안함</option>
+					</select>
+					<label for="stName">이름</label>
+					<input type="text" name="stName" id="stName">
+					<label for="stCode">학번</label>
+					<input type="text" name="stCode" id="stCode">
+					<input type="button" id="btnAddStd" value="추가">
+				</div>
+				<div id="sttab2" class="ui-content">
+					<label for="stSubject2">과목명</label>
+					<select id="stSubject2">
+						<option value="0">선택안함</option>
+					</select>
+					<label for="stLecture2">강좌명</label>
+					<select id="stLecture2">
+						<option value="0">선택안함</option>
+					</select>
+					<button id="btnShowStd">조회</button>
+					<br>
+					<hr>
+					<ul data-role="listview" id="stdlist" data-theme="a">
+						<li data-role="list-divider">검색 결과</li>
+					</ul>
+				</div>
+				<!-- <div id="sttab3" class="ui-content">
+				</div> -->
+				<div id="sttab4" class="ui-content">
+					<label for="stSubject3">과목명</label>
+					<select id="stSubject3">
+						<option value="0">선택안함</option>
+					</select>
+					<label for="stLecture3">강좌명</label>
+					<select id="stLecture3">
+						<option value="0">선택안함</option>
+					</select>
+					<button id="btnShowStd2">조회</button>
+					<br>
+					<hr>
+					<ul data-role="listview" id="stdlist2" data-theme="a">
+						<li data-role="list-divider">검색 결과</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- -- -- -- -->
+</body>
+<script type="text/javascript">
+</script>
+</html>

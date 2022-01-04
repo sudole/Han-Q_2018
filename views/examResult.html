@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<script src="plugins/jquery/jquery-1.11.1.min.js"></script>
+	<script src="plugins/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="plugins/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<link rel="stylesheet" href="plugins/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="plugins/jquery-ui-1.12.1/jquery-ui.min.css">
+</head>
+<body>
+	<div data-role="page">
+		<header data-role="header">
+			<h1>On Quiz Program</h1>
+		</header>
+		<div data-role="main">
+			<label for="scode">학번</label>
+			<input type="text" id="scode" value="201358097" readonly>
+			<label for="sname">이름</label>
+			<input type="text" id="sname" value="임수진" readonly>
+			<label type="score">점수</label>
+			<input type="text" id="score" value="86점" readonly>
+			<!-- 평균, 최대, 최저, 등수, 그래프......추가예정 -->
+			<a href="#checkTest"><button>문제별 확인</button></a>
+			<a href="center2.html" data-ajax="false"><button>닫기</button></a>
+		</div>
+	</div>
+	<div data-role="page" id="checkTest">
+		<header data-role="header">
+			<h1>On Quiz Program</h1>
+		</header>
+		<div data-role="main">
+			<div id="q1">
+				<button>문제보기</button>
+				<label for="aType">정답유무</label>
+				<p id="aType">정답</p>
+				<label for="sAnswer">학생 답</label>
+				<p id="sAnswer">O</p>
+				<label for="answer">정답</label>
+				<p id="answer">O</p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

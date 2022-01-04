@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>로그인</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<script src="plugins/jquery/jquery-1.11.1.min.js"></script>
+	<script src="plugins/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="plugins/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/jq_index.js"></script>
+	<link rel="stylesheet" href="plugins/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="plugins/jquery-ui-1.12.1/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="plugins/jquery.mobile-custom/green-theme.min.css">
+	<link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+	<div data-role="page">
+		<header data-role="header">
+			<h1>Han-Q
+				<!-- <a href="#popupQst" data-icon="info" data-rel="popup" data-iconpos="notext" class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-info" data-transition="popup">info</a>
+				<div data-role="popup" id="popupQst">
+					<img src=""/>
+				</div> -->
+			</h1>
+		</header>
+		<div data-role="main" class="ui-content">
+			<input type="text" name="scode" placeholder="학번">
+			<input type="password" name="passwd" placeholder="비밀번호">
+			<button id="btnLogin">로그인</button>
+			<center><a href="findUser.html" data-ajax="false"><span>아이디·비밀번호 찾기</span></a><hr id="bar1"><a href="saveNewUser.html" data-ajax="false"><span>회원정보 수정</span></a></center>
+		</div>
+	</div>
+</body>
+</html>

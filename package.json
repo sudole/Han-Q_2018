@@ -1,0 +1,21 @@
+{
+  "name": "dev_legacy",
+  "version": "1.0.0",
+  "description": "**Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**",
+  "main": "main.js",
+  "dependencies": {
+    "async": "^2.6.1",
+    "date-utils": "^1.2.21",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-session": "^1.15.6",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/_dev_legacy/dev_legacy#readme"
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<script src="plugins/jquery/jquery-1.11.1.min.js"></script>
+	<script src="plugins/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="plugins/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<script src="js/jq_finduser.js"></script>
+	<link rel="stylesheet" href="plugins/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="plugins/jquery-ui-1.12.1/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="plugins/jquery.mobile-custom/green-theme.min.css">
+	<link rel="stylesheet" type="text/css" href="plugins/jquery.mobile-custom/jquery.mobile.icons.min.css">
+</head>
+<body>
+	<div data-role="page" data-theme="a">
+		<header data-role="header">
+			<h3>Han-Q
+				<a href="index.html" data-icon="home" data-rel="popup" data-iconpos="notext" class="ui-btn-right ui-btn ui-shadow ui-corner-all ui-btn-icon-notext ui-icon-home" data-ajax="false">home</a>
+			</h3>
+		</header>
+		<div data-role="main" class="ui-content">
+			<input type="text" name="fName" placeholder="이름">
+			<input type="text" name="fCode" placeholder="학번">
+			<input type="text" name="fPhone" placeholder="연락처">
+			<hr>
+			<button id="btnIdFind">아이디 찾기</button>
+			<button id="btnPwFind">비밀번호 찾기</button>
+		</div>
+	</div>
+</body>
+</html>

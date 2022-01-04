@@ -1,0 +1,17 @@
+#lSubject-button {width: 90%;}
+
+#semester1-button {width: 125px;}
+#semester2-button {width: 125px;}
+
+
+#topArea {height:10%; margin:5px;}
+.btn-ar {width:12%;}
+.brn-ar#Larrow {float:left;}
+.btn-ar#Rarrow {float:right;}
+
+/* 과목 선택 창*/
+#btnSel {width: 96%; display: inline-block;}
+
+/* 과목, 강좌 선택 창 */
+#btnSel2 {width:96%;}
+#selHr {width: 96%;float: left;border: 0.8px solid #c3c1c1;}

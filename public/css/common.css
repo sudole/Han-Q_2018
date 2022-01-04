@@ -1,0 +1,3 @@
+header.ui-header.ui-bar-inherit {background-color: #52B55B;color: white;}
+.ui-btn-icon-left:after, .ui-btn-icon-right:after, .ui-btn-icon-top:after, .ui-btn-icon-bottom:after, .ui-btn-icon-notext:after {background-color:#397E40;}
+.ui-listview>.ui-li-static {padding: 0;}

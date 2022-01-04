@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<script src="plugins/jquery/jquery-1.11.1.min.js"></script>
+	<script src="plugins/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<script src="plugins/jquery-ui-1.12.1/jquery-ui.min.js"></script>
+	<script src="js/jq_regexam.js"></script>
+	<link rel="stylesheet" href="plugins/jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css">
+	<link rel="stylesheet" href="plugins/jquery-ui-1.12.1/jquery-ui.min.css">
+	<link rel="stylesheet" type="text/css" href="css/testmng.css">
+</head>
+<body>
+	<div data-role="page" id="regExam">
+		<header data-role="header">
+			<h1>On Quiz Program</h1>
+		</header>
+		<div data-role="content">
+			<label for="eSubject">과목명</label>
+			<input type="text" name="subject" id="eSubject" value="<%= subject %>" sbid="<%= sbid %>" readonly>
+			<label for="eLecture">강좌명</label>
+			<input type="text" name="lecture" id="eLecture">
+			<fieldset data-role="controlgroup" data-type="horizontal">
+				<legend>유형</legend>
+				<input type="radio" name="examType" id="type1" value="0" checked>
+				<label for="type1">OX형</label>
+				<input type="radio" name="examType" id="type2" value="1">
+				<label for="type2">괄호형</label>
+			</fieldset>
+			<label for="question">문제</label>
+			<textarea id="question"></textarea>
+			<label for="comment">안내문구</label>
+			<input type="text" id="comment">
+			<label for="answer">답<input type="button" id="btnplus" value="+"></label>
+			<input type="text" id="answer1" class="ansGrp">
+			<button id="btnRegEx">등록</button>
+		</div>
+	</div>
+</body>
+</html>
